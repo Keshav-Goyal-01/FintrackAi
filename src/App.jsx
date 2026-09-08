@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Login from './components/Login';
 import Sidebar from './components/Sidebar';
 import StatTile from './components/StatTile';
 import Panel from './components/Panel';
@@ -49,10 +50,18 @@ const initialTransactions = [
   { name: 'Spotify', note: '8 days ago', value: '-$9.00' },
 ];
 
+
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  if (!isLoggedIn) {
+    return <Login onLogin={() => setIsLoggedIn(true)} />;
+  }
+
   return (
     <div className="dashboard-container">
       <Sidebar />
+
 
       <main className="main-content">
         {/* Top Header */}
